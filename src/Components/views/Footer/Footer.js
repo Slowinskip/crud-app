@@ -3,7 +3,7 @@
 
 const Footer = () => {
     return (
-        <div className="text-center text-muted mx-10">
+        <div className="text-center text-muted m-3">
             <h7>Copyright BlogApp 2022</h7>
         </div>
          

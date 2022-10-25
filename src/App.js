@@ -20,7 +20,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/post/add" element={<PostAdd />} />
-        <Route path="/post/edit/:id" element={<PostEdit />} />
+        <Route path="/edit/:id" element={<PostEdit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

@@ -10,7 +10,7 @@ const initialState = {
     },
     {
       id: '2',
-      title: 'Article title 3',
+      title: 'Article title 2',
       shortDescription: 'Short description of the article...',
       content: 'Main content of the article',
       publishedDate: '02-02-2022',
@@ -18,7 +18,7 @@ const initialState = {
     },
     {
       id: '3',
-      title: 'Article title 2',
+      title: 'Article title 3',
       shortDescription: 'Short description of the article...',
       content: 'Main content of the article',
       publishedDate: '03-03-2022',
