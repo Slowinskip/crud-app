@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card'
 import { useState } from 'react';
 import ModalDelete from "../../features/ModalDelete/ModalDelete";
 import { removePost } from "../../../redux/postsRedux";
+import { dateToStr } from "../../../utils/dateToStr";
 
 const PostAdd = () => {
 
@@ -39,8 +40,8 @@ const PostAdd = () => {
             <Card.Body>
               <Card.Title>{postData.title}</Card.Title>
               <Card.Text className="mb-1"><b>Author:</b> {postData.author}</Card.Text>
-              <Card.Text className="mb-1"><b>Published:</b> {postData.publishedDate}</Card.Text>
-              <Card.Text className="mb-3">{postData.content}</Card.Text>
+              <Card.Text className="mb-1"><b>Published:</b> {dateToStr(postData.publishedDate)}</Card.Text>
+              <Card.Text className="mb-3"><p dangerouslySetInnerHTML={{ __html: postData.content }} /></Card.Text>
             </Card.Body>
           </Card>
         </Col>
