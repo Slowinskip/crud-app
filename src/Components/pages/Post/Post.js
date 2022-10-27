@@ -41,6 +41,7 @@ const PostAdd = () => {
               <Card.Title>{postData.title}</Card.Title>
               <Card.Text className="mb-1"><b>Author:</b> {postData.author}</Card.Text>
               <Card.Text className="mb-1"><b>Published:</b> {dateToStr(postData.publishedDate)}</Card.Text>
+              <Card.Text className="mb-1"><b>Categoris:</b> {dateToStr(postData.category)}</Card.Text>
               <Card.Text className="mb-3"><p dangerouslySetInnerHTML={{ __html: postData.content }} /></Card.Text>
             </Card.Body>
           </Card>

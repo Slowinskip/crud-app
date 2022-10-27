@@ -7,6 +7,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import DatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
+import { useSelector } from 'react-redux';
+import { getAllCategories } from '../../../redux/categoriesRedux';
 
 const PostForm = ({ action, actionText, ...props }) => {
 
@@ -18,12 +20,20 @@ const PostForm = ({ action, actionText, ...props }) => {
     const [content, setContent] = useState(props.content || '');
     const [contentError, setcontentError] = useState(false);
     const [dateError, setdateError] = useState(false);
+    const [category, setCategory] = useState(props.category || '');
+    const [categoryError, setcategoryError] = useState(false);
+
+
+    const categories = useSelector(getAllCategories);
 
     const handleSubmit = () => {
+        if(category != 'null'){
+            setcategoryError(!categoryError)
+        }
         setcontentError(!content)
         setdateError(!publishedDate)
-        if(content && publishedDate) {
-            action({ title, author, publishedDate, shortDescription, content});
+        if(content && publishedDate && category) {
+            action({ title, author, publishedDate, shortDescription, content, category});
         }
       }
 
@@ -37,7 +47,7 @@ const PostForm = ({ action, actionText, ...props }) => {
                     <Form.Group className="mb-3">
                         <Form.Label>Title</Form.Label>
                         <Form.Control
-                            {...register("title", { required: true, minLength: 4 })}
+                            {...register("title", { required: true,})}
                             value={title}
                             onChange={e => setTitle(e.target.value)}
                             type="text" placeholder="Enter title"
@@ -55,6 +65,17 @@ const PostForm = ({ action, actionText, ...props }) => {
                         <Form.Label>Published:</Form.Label>
                         <DatePicker selected={publishedDate} onChange={(date) => setPublishedDate(date)} />
                         {dateError && <small className="d-block form-text text-danger mt-2">You have to choose a date.</small>}
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Category</Form.Label>
+                        <Form.Select 
+                        {...register("category", { required: true })}
+                        onChange={e => setCategory(e.target.value)}
+                        value={category ? category : "null"}>
+                        <option disabled value="null">Select category...</option>
+                        {categories.map((category, index) => <option key={index} value={category}>{category}</option> )}
+                        </Form.Select>            
+                        {categoryError && <small className="d-block form-text text-danger mt-2">Please choose category</small>}
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Short Description</Form.Label>

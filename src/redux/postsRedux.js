@@ -1,6 +1,7 @@
 import shortid from 'shortid';
 
 //selectors
+export const getAllCategories = ({ categories}) => categories;
 export const getAllPosts = ({ posts }) => posts;
 export const getPostById = ({ posts }, postId) => posts.find(post => post.id === postId);
 
